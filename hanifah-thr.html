@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Spesial untuk Hanifah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .eid-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            flex-direction: column;
+        }
+        
+        .eid-message {
+            color: #fff;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0, 0 0 20px #f80;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 30px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: confetti-fall 5s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>Klik Tombol WhatsApp Di Bawah</h1>
+    
+    <a href="#" class="whatsapp-button" id="whatsappLink">Kirim Pesan WhatsApp</a>
+    
+    <div class="eid-animation" id="eidAnimation">
+        <div class="eid-message">Selamat Idul Fitri 1446 H</div>
+    </div>
+
+    <script>
+        document.getElementById('whatsappLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Pesan pertama
+            alert('Hi Hanifah Nur Hasanah');
+            
+            // Pesan kedua setelah klik OK
+            alert('Klik OK');
+            
+            // Pesan ketiga
+            alert('Semoga THR yang dikirim di aplikasi dananya dapat bermanfaat yaa.');
+            
+            // Tampilkan animasi Idul Fitri
+            showEidAnimation();
+        });
+        
+        function showEidAnimation() {
+            const animation = document.getElementById('eidAnimation');
+            animation.style.display = 'flex';
+            
+            // Buat confetti
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+            
+            // Sembunyikan setelah 5 detik
+            setTimeout(() => {
+                animation.style.display = 'none';
+            }, 5000);
+        }
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Warna acak
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.backgroundColor = randomColor;
+            
+            // Posisi acak di bagian atas
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            
+            // Ukuran acak
+            const size = Math.random() * 10 + 5;
+            confetti.style.width = size + 'px';
+            confetti.style.height = size + 'px';
+            
+            // Animasi dengan durasi acak
+            const duration = Math.random() * 3 + 2;
+            confetti.style.animationDuration = duration + 's';
+            
+            document.getElementById('eidAnimation').appendChild(confetti);
+            
+            // Hapus confetti setelah selesai animasi
+            setTimeout(() => {
+                confetti.remove();
+            }, duration * 1000);
+        }
+    </script>
+</body>
+</html>
